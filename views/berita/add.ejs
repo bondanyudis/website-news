@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>Collapsible sidebar using Bootstrap 3</title>
+
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link href="/stylesheets/bootstrap-tokenfield.css" type="text/css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.css" rel="stylesheet" />
+    <!-- Our Custom CSS -->
+    <link rel="stylesheet" href="/stylesheets/style4.css" />
+    <style>
+        #output_image {
+            max-width: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <% if (messages.error) { %>
+    <div class="alert alert-danger" role="alert"><%- messages.error %></div>
+    <% } %>
+    <% if (messages.success) { %>
+    <div class="alert alert-danger" role="alert"><%- messages.success %></div>
+    <% } %>
+    <div class="wrapper">
+        <% include ../sidebar.ejs %>
+        <!-- Page Content Holder -->
+        <div id="content">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn">
+                            <i class="glyphicon glyphicon-align-left"></i>
+                            <span>Toggle Sidebar</span>
+                        </button>
+                    </div>
+
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="#">Page</a></li>
+                            <li><a href="#">Page</a></li>
+                            <li><a href="#">Page</a></li>
+                            <li><a href="#">Page</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="customRow">
+                <div class="container">
+                    <div class="card">
+                        <div class="card-body">
+                            <h1 class="text-center">Post Management System</h1>
+                            <hr />
+                            <form action="/berita/add" method="POST" enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <label for="post_title">Title</label>
+                                    <input type="text" name="title" class="form-control" placeholder="Title" id="title"
+                                        required />
+                                    <label for="author_name">Author</label>
+                                    <input type="text" name="author_name" class="form-control"
+                                        placeholder="Enter author name" id="author_name" required />
+                                    <br />
+
+                                    <label>Add Tags:</label><br />
+
+                                    <input type="text" class="form-control" name="tokenfield" id="tokenfield" />
+                                    <br />
+                                    <textarea id="summernote" name="summernote"></textarea>
+                                    <input type="file" name="foto" id="foto" accept="image/*"
+                                        onchange="preview_image(event)" />
+                                    <br />
+                                    <img id="output_image" class="img-responsive" />
+                                    <br />
+                                    <br />
+                                    <input type="submit" value="POST" class="btn btn-primary" />
+                                </div>
+                            </form>
+                            <hr />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery CDN -->
+    <!-- <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="/js/bootstrap-tokenfield.js"></script>
+    <!-- Bootstrap Js CDN -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.js"></script>
+    <script>
+        $("#summernote").summernote();
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#sidebarCollapse").on("click", function () {
+                $("#sidebar").toggleClass("active");
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        function preview_image(event) {
+            var reader = new FileReader();
+            reader.onload = function () {
+                var output = document.getElementById("output_image");
+                output.src = reader.result;
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
+
+    <script type="text/javascript">
+        $('#tokenfield').tokenfield({
+            autocomplete: {
+                delay: 100
+            },
+            showAutocompleteOnFocus: true
+        })
+    </script>
+</body>
+
+</html>

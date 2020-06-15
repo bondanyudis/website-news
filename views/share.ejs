@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <title>Collapsible sidebar using Bootstrap 3</title>
+
+  <!-- Bootstrap CSS CDN -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+  <!-- Our Custom CSS -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="/stylesheets/style4.css" />
+  <link rel="stylesheet" href="/stylesheets/card.css">
+</head>
+
+<body>
+  <% if (messages.error) { %>
+  <div class="alert alert-danger" role="alert"><%- messages.error %></div>
+  <% } %>
+
+  <% if (messages.success) { %>
+  <div class="alert alert-danger" role="alert"><%- messages.success %></div>
+  <% } %>
+
+  <div class="wrapper">
+    <!-- Sidebar Holder -->
+    <% include sidebar.ejs %>
+
+    <!-- Page Content Holder -->
+    <div id="content">
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn">
+              <i class="glyphicon glyphicon-align-left"></i>
+              <span>Toggle Sidebar</span>
+            </button>
+          </div>
+
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+              <li>
+                <a href="#">Sign in as <b>yudis</b></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <!-- content -->
+      <div class="row">
+        <div class="col-md-3 col-xl-3">
+          <div class="card bg-c-pink order-card">
+            <div class="card-block" style="text-align:center">
+              <h2 class="m-b-20">Berita</h6>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-3 col-xl-3">
+          <div class="card bg-c-pink order-card">
+            <div class="card-block" style="text-align:center">
+              <h2 class="m-b-20">Tips and Trik</h6>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-3 col-xl-3">
+          <div class="card bg-c-pink order-card">
+            <div class="card-block" style="text-align:center">
+              <h2 class="m-b-20">Tutorial</h6>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-3 col-xl-3">
+          <div class="card bg-c-pink order-card">
+            <div class="card-block" style="text-align:center">
+              <h2 class="m-b-20">Ebook</h6>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-3 col-xl-3">
+          <div class="card bg-c-green order-card">
+            <div class="card-block">
+              <h6 class="m-b-20">Berita likes</h6>
+              <h2 class="text-right"><i class="fa fa-rocket f-left"></i><span><%= data[0][0].likes_berita %></span></h2>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-3 col-xl-3">
+          <div class="card bg-c-yellow order-card">
+            <div class="card-block">
+              <h6 class="m-b-20">Tips and Trik likes</h6>
+              <h2 class="text-right"><i class="fa fa-refresh f-left"></i><span><%= data[2][0].likes_tipstrik %></span>
+              </h2>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col-md-3 col-xl-3">
+          <div class="card bg-c-blue order-card">
+            <div class="card-block">
+              <h6 class="m-b-20">Tutorial Likes</h6>
+              <h2 class="text-right"><i class="fa fa-cart-plus f-left"></i><span><%= data[1][0].likes_tutorial %></span>
+              </h2>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-3 col-xl-3">
+          <div class="card bg-c-green order-card">
+            <div class="card-block">
+              <h6 class="m-b-20">Ebook likes</h6>
+              <h2 class="text-right"><i class="fa fa-rocket f-left"></i><span><%= data[3][0].likes_ebook %></span></h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container panel-body">
+        <h2>Detail List of Articles' Likes</h2>
+        <br>
+        <table class="table table-striped table-bordered table-list" id="myTable">
+          <thead>
+            <tr>
+              <th>nomor</th>
+              <th>id artikel</th>
+              <th>type id</th>
+              <th>username</th>
+              <th>ip address</th>
+              <th>created at</th>
+              <th>updated at</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for(var i = 0; i< data[4].length; i++){%>
+            <tr>
+              <td><%= data[4][i].idshare%></td>
+              <td><%= data[4][i].Articleid%></td>
+              <td><%= data[4][i].type_id%></td>
+              <td><%= data[4][i].username%></td>
+              <td><%= moment(data[0].created_at).format('DD MMM YYYY hh:mm:ss') %></td>
+              <td><%= moment(data[0].updated_at).format('DD MMM YYYY hh:mm:ss') %></td>
+              <td><%= data[4][i].ip_address%></td>
+            </tr>
+            <%}%>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <!-- content -->
+  <!-- jQuery CDN -->
+  <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+  </script>
+  <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+    integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous">
+  </script>
+  <!-- Bootstrap Js CDN -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $("#sidebarCollapse").on("click", function () {
+        $("#sidebar").toggleClass("active");
+      });
+    });
+  </script>
+  <script>
+    $(document).ready( function () {
+       $('#myTable').DataTable();
+    } );
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <!-- Bootstrap CSS CDN -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+  <!-- Our Custom CSS -->
+  <link rel="stylesheet" href="/stylesheets/style4.css" />
+</head>
+
+<body>
+
+  <div class="wrapper">
+    <!-- Sidebar Holder -->
+    <nav id="sidebar">
+      <div class="sidebar-header">
+        <h3>Bootstrap Sidebar</h3>
+        <strong>BS</strong>
+      </div>
+
+      <ul class="list-unstyled components">
+        <li>
+          <a href="/">
+            <i class="glyphicon glyphicon-link"></i>
+            Home
+          </a>
+        </li>
+        <li>
+          <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">
+            <i class="glyphicon glyphicon-duplicate"></i>
+            Artikel dan berita
+          </a>
+          <ul class="collapse list-unstyled" id="pageSubmenu">
+            <li><a href="/tipstrik">Tips dan Trik</a></li>
+            <li><a href="/tutorial">Tutorial</a></li>
+            <li><a href="/berita">Berita</a></li>
+            <li><a href="/ebook">Ebook</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#pagetambah" data-toggle="collapse" aria-expanded="false">
+            <i class="glyphicon glyphicon-plus"></i>
+            Tambah Kiriman
+          </a>
+          <ul class="collapse list-unstyled" id="pagetambah">
+            <li><a href="/tipstrik/add">Tips dan Trik</a></li>
+            <li><a href="/tutorial/add">Tutorial</a></li>
+            <li><a href="/berita/add">Berita</a></li>
+            <li><a href="/ebook/add">Ebook</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="/view">
+            <i class="glyphicon glyphicon-eye-open"></i>
+            Views
+          </a>
+        </li>
+        <li>
+          <a href="/share">
+            <i class="glyphicon glyphicon-send"></i>
+            Shares
+          </a>
+        </li>
+        <li>
+          <a href="/comment">
+            <i class="glyphicon glyphicon-send"></i>
+            Comments
+          </a>
+        </li>
+        <li>
+          <a href="/likes">
+            <i class="glyphicon glyphicon-thumbs-up"></i>
+            Likes
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <!-- content -->
+  <!-- jQuery CDN -->
+  <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+  <!-- Bootstrap Js CDN -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+</body>
+
+</html>
